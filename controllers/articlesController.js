@@ -1,16 +1,23 @@
-const getArticles = (req,res) => {
-    res.send('Get Articles')
+const Post = require('../models/postModel')
+
+const getPosts = async (req,res) => {
+    const posts = await Post.find();
+    res.status(200).json(posts)
 }
 
-const addArticle = (req,res) => {
-    res.send('Add Articles')
+const addPost = async (req,res) => {
+    const post = await Post.create({
+        title: req.body.title,
+        article: req.body.article
+    })
+    res.status(201).json(post)
 }
 
-const editArticle = (req,res) => {
+const editPost = (req,res) => {
     res.send('Edit Articles')
 }
 
-const deleteArticle = (req,res) => {
+const deletePost = (req,res) => {
     res.send('Delete Articles')
 }
 
@@ -18,4 +25,4 @@ const deleteArticle = (req,res) => {
 
 
 
-module.exports = {getArticles, addArticle, editArticle, deleteArticle}
+module.exports = {getPosts, addPost, editPost, deletePost}
